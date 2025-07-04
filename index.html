@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Alia 💖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff9fb;
+            color: #5a3d5c;
+            overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .typing {
+            border-right: 2px solid;
+            animation: typing 2s steps(40), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ec4899 }
+        }
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .gift-card {
+            transition: all 0.3s ease;
+        }
+        
+        .gift-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-number {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Floating Hearts Background -->
+    <div id="hearts-container"></div>
+    
+    <!-- Music Player (hidden but autoplays) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicToggle" class="fixed top-4 right-4 z-50 bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition">
+        <i class="fas fa-music"></i>
+    </button>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 bg-white bg-opacity-90 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="#home" class="dancing-font text-2xl font-bold text-pink-600">Alia & Yahia</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#timeline" class="text-pink-800 hover:text-pink-500 transition">Our Story</a>
+                    <a href="#gifts" class="text-pink-800 hover:text-pink-500 transition">Your Gifts</a>
+                    <a href="#letter" class="text-pink-800 hover:text-pink-500 transition">Love Letter</a>
+                    <a href="#countdown" class="text-pink-800 hover:text-pink-500 transition">Our Wedding</a>
+                    <a href="#dreams" class="text-pink-800 hover:text-pink-500 transition">Our Dreams</a>
+                </div>
+                <button class="md:hidden text-pink-800" id="mobileMenuButton">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#timeline" class="block py-2 text-pink-800 hover:text-pink-500 transition">Our Story</a>
+            <a href="#gifts" class="block py-2 text-pink-800 hover:text-pink-500 transition">Your Gifts</a>
+            <a href="#letter" class="block py-2 text-pink-800 hover:text-pink-500 transition">Love Letter</a>
+            <a href="#countdown" class="block py-2 text-pink-800 hover:text-pink-500 transition">Our Wedding</a>
+            <a href="#dreams" class="block py-2 text-pink-800 hover:text-pink-500 transition">Our Dreams</a>
+        </div>
+    </nav>
+    
+    <!-- Landing Page -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center px-6 py-20 md:py-0">
+            <h1 class="dancing-font text-5xl md:text-7xl font-bold text-pink-600 mb-6 animate-bounce">Happy Birthday lolty</h1>
+            <p class="text-xl md:text-2xl text-pink-800 mb-8">Today you are <span class="text-3xl font-bold text-pink-600">24</span> and my love for you grows stronger</p>
+            <div class="typing text-xl md:text-2xl text-pink-900 mb-10 mx-auto w-fit">From Yahia, with all my love 💖</div>
+            <div class="flex justify-center space-x-4">
+                <a href="#timeline" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+                    Our Journey <i class="fas fa-heart ml-2"></i>
+                </a>
+                <a href="#letter" class="bg-white hover:bg-gray-100 text-pink-600 border border-pink-600 px-6 py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+                    Love Letter <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 text-center">
+            <a href="#timeline" class="animate-bounce inline-block">
+                <i class="fas fa-chevron-down text-3xl text-pink-600"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gradient-to-b from-pink-50 to-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="dancing-font text-4xl md:text-5xl text-center text-pink-700 mb-16">Our Beautiful Journey</h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="hidden md:block absolute left-1/2 h-full w-1 bg-pink-300 transform -translate-x-1/2"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-16 md:space-y-24">
+                    <!-- Item 1 -->
+                    <div class="timeline-item md:w-1/2 mx-auto md:mx-0 md:pl-16 pr-0 md:pr-16">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">When We First Met</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">5/3/2023 That day in birthday party, your smile lit up the space. I knew from that moment there was something special about you.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/8DCPpNRV/Whats-App-Image-2025-07-04-at-6-05-04-PM.jpg" alt="Cafe meeting" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"The beginning of our forever"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="timeline-item md:w-1/2 ml-auto md:pl-16 pr-0 md:pr-0">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">Our First Date</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">28/3/2023 Dinner under the stars, your laugh, the way your eyes sparkled when you talked about your dreams, and most important the day i told "I Love You 💖".</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/bRFptsRP/Untitled.jpg" alt="Romantic dinner" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"The night I fell for you completely"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="timeline-item md:w-1/2 mx-auto md:mx-0 md:pl-16 pr-0 md:pr-16">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">Our Fateha Engagement</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">13/8/2023 Our family gathering and read the fateha on our engagement was absolute thrill and happiness for me.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/JWKn0X4Y/Whats-App-Image-2025-07-04-at-6-05-08-PM-3.jpg" alt="Beach trip" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"We're getting official"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="timeline-item md:w-1/2 ml-auto md:pl-16 pr-0 md:pr-0">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-ring"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">Our Engagement Ceramony</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">14/9/2023 That moment when I got down on one knee and you were shy about it, your hands trembling in mine, and the joyful feelling that changed everything, knowing it's getting official.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/DqMqRGW/Whats-App-Image-2025-07-04-at-6-05-05-PM-1.jpg" alt="Proposal" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"The best decision of my life"</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="timeline-item md:w-1/2 mx-auto md:mx-0 md:pl-16 pr-0 md:pr-16">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-umbrella-beach"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">Our Trips Together</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">Every time we go for a trip together, Thanks to your father 💖, It always rest my mind away and imagine us going these trips but as a married couple.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/M5xnHTqT/Whats-App-Image-2025-07-04-at-5-58-46-PM-2.jpg" alt="Beach trip" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"with you it's always fun"</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Item 6 -->
+                   <div class="timeline-item md:w-1/2 ml-auto md:pl-16 pr-0 md:pr-0">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">Building Our Home</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">17/1/2025 That moment we started building our home officially, it was so awesome getting everything in place in our head and imagination but knowing we are making it real.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/PZfJCCs4/Whats-App-Image-2025-07-04-at-5-59-46-PM.jpg" alt="Beach trip" class="w-full h-48 object-cover rounded-lg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"our little home for our little family"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 7 -->
+                    <div class="timeline-item md:w-1/2 mx-auto md:mx-0 md:pl-16 pr-0 md:pr-16">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-pink-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-pink-800">To My Queen</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">For my Love and soul and everything, you will always have your place in my heart, am always proud of you litle one.</p>
+                            <div class="bg-pink-100 rounded-lg p-4">
+                                <img src="https://i.ibb.co/JWY1vMCF/Whats-App-Image-2025-07-04-at-6-05-04-PM-1.jpg">
+                                <p class="text-sm text-pink-800 mt-2 italic">"as beautiful as always"</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <!-- Love Letter -->
+    <section id="letter" class="py-20 bg-gradient-to-b from-white to-pink-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="dancing-font text-4xl md:text-5xl text-center text-pink-700 mb-12">My Love Letter to My love</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-pink-200">
+                <div class="bg-pink-600 text-white p-4">
+                    <div class="flex items-center">
+                        <div class="bg-white text-pink-600 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">To My Dearest Alia,</h3>
+                            <p class="text-sm opacity-80">On your 24th birthday</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 md:p-8">
+                    <div id="typedLetter" class="text-gray-800 text-lg leading-relaxed space-y-4">
+                        <p>My love,</p>
+                        <p>As you celebrate your 24th year, I find myself overwhelmed with gratitude that life brought you to me. From the moment we met, you've been the light that brightens my darkest days and the calm in my storms.</p>
+                        <p>This past year with you has been filled with moments I'll cherish forever - your laughter echoing through our home, your hand finding mine in crowded rooms, the way your eyes light up when you're excited about something. Each day with you is a gift I never take for granted.</p>
+                        <p>As we count down to becoming husband and wife, I promise you this: my love for you will grow stronger with each passing year. I will be your partner in every adventure, your shelter in every storm, and your biggest fan in every dream you pursue.</p>
+                        <p>Happy birthday, my beautiful Alia. May this year bring you as much joy as you've brought into my life. I can't wait to celebrate countless more birthdays by your side.</p>
+                        <p>Forever yours,</p>
+                        <p class="dancing-font text-2xl text-pink-600">Yahia</p>
+                    </div>
+                    
+                    <div class="mt-10 text-center">
+                        <button id="playVideoBtn" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg flex items-center mx-auto">
+                            <i class="fas fa-video mr-2"></i> Watch My Video Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Message Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 hidden">
+        <div class="relative w-full max-w-4xl mx-4">
+            <button id="closeVideoModal" class="absolute -top-12 right-0 text-white text-3xl hover:text-pink-400">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="bg-black aspect-video">
+                <div class="flex items-center justify-center h-full text-white text-xl">
+                    <i class="fas fa-heart text-pink-600 text-4xl mr-3"></i>
+                    <span>Video message would play here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Countdown to Wedding -->
+    <section id="countdown" class="py-20 bg-pink-600 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="dancing-font text-4xl md:text-5xl mb-6">officially My Wife In</h2>
+            <p class="text-xl mb-12 max-w-2xl mx-auto">Every second brings us closer to the day I get to call you my wife</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+                    <div class="countdown-number text-4xl md:text-6xl font-bold" id="days">--</div>
+                    <div class="text-sm uppercase tracking-wider">Days</div>
+                </div>
+                <div class="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+                    <div class="countdown-number text-4xl md:text-6xl font-bold" id="hours">--</div>
+                    <div class="text-sm uppercase tracking-wider">Hours</div>
+                </div>
+                <div class="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+                    <div class="countdown-number text-4xl md:text-6xl font-bold" id="minutes">--</div>
+                    <div class="text-sm uppercase tracking-wider">Minutes</div>
+                </div>
+                <div class="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+                    <div class="countdown-number text-4xl md:text-6xl font-bold" id="seconds">--</div>
+                    <div class="text-sm uppercase tracking-wider">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white bg-opacity-20 rounded-xl p-6 max-w-2xl mx-auto backdrop-blur-sm">
+                <h3 class="dancing-font text-2xl md:text-3xl mb-4">24th October 2025</h3>
+                <p>The day our two lives become one. The day I get to look into your eyes and say "I do" in front of everyone we love.</p>
+                <p class="mt-3">I can't wait to build our forever together, my love.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <!-- Final Message -->
+    <section class="py-20 bg-gradient-to-b from-pink-100 to-pink-200">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="dancing-font text-4xl md:text-5xl text-pink-700 mb-6">To My Future Wife</h2>
+            <p class="text-xl text-pink-800 mb-8">This website will always be here, just like my love for you.</p>
+            <p class="text-lg text-pink-900 mb-10">No matter how many birthdays we celebrate together, no matter how many years pass, my love for you will remain as constant as the stars. Thank you for choosing to spend your life with me.</p>
+            <div class="bg-white bg-opacity-70 rounded-xl p-6 inline-block">
+                <p class="dancing-font text-3xl text-pink-600">Happy 24th Birthday, Alia</p>
+                <p class="text-pink-800 mt-2">With all my heart, Yahia</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <script>
+        // Floating Hearts Animation
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '<i class="fas fa-heart text-pink-400 opacity-70"></i>';
+            
+            // Random position
+            const left = Math.random() * 100;
+            heart.style.left = `${left}%`;
+            heart.style.top = '100vh';
+            
+            // Random size
+            const size = Math.random() * 20 + 10;
+            heart.style.fontSize = `${size}px`;
+            
+            // Random animation duration
+            const duration = Math.random() * 6 + 4;
+            heart.style.animationDuration = `${duration}s`;
+            
+            container.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHearts, 300);
+        
+        // Music Toggle
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isMusicPlaying = false;
+        
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                musicToggle.classList.remove('bg-pink-600');
+                musicToggle.classList.add('bg-pink-500');
+            } else {
+                bgMusic.play();
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                musicToggle.classList.remove('bg-pink-500');
+                musicToggle.classList.add('bg-pink-600');
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+        
+        // Video Modal
+        const playVideoBtn = document.getElementById('playVideoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const closeVideoModal = document.getElementById('closeVideoModal');
+        
+        playVideoBtn.addEventListener('click', () => {
+            videoModal.classList.remove('hidden');
+        });
+        
+        closeVideoModal.addEventListener('click', () => {
+            videoModal.classList.add('hidden');
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll to sections smoothly
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Timeline Animation on Scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        function checkTimelineItems() {
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (itemTop < windowHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkTimelineItems);
+        window.addEventListener('load', checkTimelineItems);
+        
+        // Wedding Countdown
+        function updateCountdown() {
+            const weddingDate = new Date('October 24, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Typing Effect for Love Letter
+        const letterText = `My love,
+
+As you celebrate your 24th year, I find myself overwhelmed with gratitude that life brought you to me. From the moment we met, you've been the light that brightens my darkest days and the calm in my storms.
+
+This past year with you has been filled with moments I'll cherish forever - your laughter echoing through our home, your hand finding mine in crowded rooms, the way your eyes light up when you're excited about something. Each day with you is a gift I never take for granted.
+
+As we count down to becoming husband and wife, I promise you this: my love for you will grow stronger with each passing year. I will be your partner in every adventure, your shelter in every storm, and your biggest fan in every dream you pursue.
+
+Happy birthday, my beautiful Alia. May this year bring you as much joy as you've brought into my life. I can't wait to celebrate countless more birthdays by your side.
+
+Forever yours,
+
+Yahia`;
+
+        const typedLetter = document.getElementById('typedLetter');
+        typedLetter.innerHTML = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < letterText.length) {
+                // Get current text and add next character
+                let currentText = typedLetter.innerHTML;
+                let nextChar = letterText.charAt(i);
+                
+                // Add the character with a span for the cursor effect
+                typedLetter.innerHTML = currentText.substring(0, currentText.length - 7) + 
+                                      nextChar + 
+                                      '<span class="typing-cursor">|</span>';
+                
+                i++;
+                setTimeout(typeWriter, 20); // Adjust speed here
+            } else {
+                // Remove the cursor when done
+                typedLetter.innerHTML = letterText;
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 1000);
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=yahia197/alia-s-birthday" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p><p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=yahia197/alia-s-birthday" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
